@@ -1,5 +1,5 @@
 from flask import Flask
-from .routes.book_routes import books_bp
+from .routes.book_routes import bp as books_bp
 #from .routes.hello_world_routes import hello_world_bp #Not needed for hello books API
 from .db import db, migrate #Imports the db and migrate objects we created previously
 from .models import book # Newly added import
