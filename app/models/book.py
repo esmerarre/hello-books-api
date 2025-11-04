@@ -1,6 +1,11 @@
 #need access to SQLAlchemy's tools for defining table columns in a model
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import ForeignKey
 from ..db import db
+from typing import Optional
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+  from .author import Author
 
 #SQLAlchemy will use the lowercase version of this class name as the name of the table it will create
 #Our model inherits from db.Model
@@ -8,6 +13,9 @@ class Book(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str]
     description: Mapped[str]
+    author_id: Mapped[Optional[int]] = mapped_column(ForeignKey("author.id"))
+    author: Mapped[Optional["Author"]] = relationship(back_populates="books")
+
 
     # indented under the Book class definition
     @classmethod
