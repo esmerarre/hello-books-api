@@ -1,6 +1,7 @@
 from flask import Flask
 from .routes.book_routes import bp as books_bp
 from .routes.author_routes import bp as authors_bp
+from .routes.genre_routes import bp as genre_bp
 
 #from .routes.hello_world_routes import hello_world_bp #Not needed for hello books API
 from .db import db, migrate #Imports the db and migrate objects we created previously
@@ -28,6 +29,7 @@ def create_app(config=None):
     # Register Blueprints here
     app.register_blueprint(books_bp)
     app.register_blueprint(authors_bp)
+    app.register_blueprint(genre_bp)
 
     # This code not needed for hello books API
     #app.register_blueprint(hello_world_bp)
