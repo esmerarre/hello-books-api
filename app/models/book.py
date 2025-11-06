@@ -5,7 +5,8 @@ from ..db import db
 from typing import Optional
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-  from .author import Author
+    from .author import Author
+    from .genre import Genre
 
 #SQLAlchemy will use the lowercase version of this class name as the name of the table it will create
 #Our model inherits from db.Model
@@ -15,6 +16,8 @@ class Book(db.Model):
     description: Mapped[str]
     author_id: Mapped[Optional[int]] = mapped_column(ForeignKey("author.id"))
     author: Mapped[Optional["Author"]] = relationship(back_populates="books")
+    genres: Mapped[list["Genre"]] = relationship(secondary="book_genre", back_populates="books") 
+
 
 
     # indented under the Book class definition

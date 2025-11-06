@@ -5,7 +5,7 @@ from .routes.genre_routes import bp as genre_bp
 
 #from .routes.hello_world_routes import hello_world_bp #Not needed for hello books API
 from .db import db, migrate #Imports the db and migrate objects we created previously
-from .models import book # Newly added import
+from .models import book, author, genre, book_genre
 import os
 
 def create_app(config=None):
